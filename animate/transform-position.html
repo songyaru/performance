@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>transform VS position</title>
+    <style type="text/css">
+        #test {
+            -webkit-animation-duration: 3s;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-direction: alternate;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            top: 0;
+            width: 200px;
+            height: 200px;
+            margin: 50px;
+            background-color: #808080;
+            border: 5px solid red;
+            position: absolute;
+
+            color: #fff;
+            text-align: center;
+            font-size: 60px;
+            line-height: 200px;
+
+        }
+
+        .move {
+            -webkit-animation-name: move;
+            animation-name: move;
+        }
+
+        .trans {
+
+            -webkit-animation-name: trans;
+            animation-name: trans;
+        }
+
+        @-webkit-keyframes move {
+            from {
+                left: 100px;
+            }
+            to {
+                left: 500px;
+            }
+        }
+
+        @-webkit-keyframes trans {
+            from {
+                -webkit-transform: translateX(100px);
+            }
+            to {
+                -webkit-transform: translateX(500px);
+            }
+        }
+
+        @keyframes move {
+            from {
+                left: 100px;
+            }
+            to {
+                left: 500px;
+            }
+        }
+
+        @keyframes trans {
+            from {
+                transform: translateX(100px);
+            }
+            to {
+                transform: translateX(500px);
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+<label for="selectInput">user translate</label><input id="selectInput" type="checkbox" value="trans"/>
+
+<div id="test" class="">
+</div>
+
+
+<script type="text/javascript">
+    var selectInputDom = document.getElementById("selectInput");
+    var testDom = document.getElementById("test");
+    var className;
+    selectInputDom.onclick = function () {
+        className = this.checked ? "trans" : "move";
+        testDom.className = className;
+        testDom.innerHTML = className;
+    };
+</script>
+
+</body>
+</html>
