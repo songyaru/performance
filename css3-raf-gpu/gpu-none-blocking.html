@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rotation via CSS keyframe animation</title>
+    <style>
+        * {
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-size: 18pt;
+            color: #797979;
+        }
+
+        body {
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+
+        #item2 {
+            position: fixed;
+            left: 280px;
+            top: 70px;
+        }
+
+        button {
+            cursor: pointer;
+            font-size: 130%;
+        }
+
+        #foo {
+            -webkit-animation-duration: 3s;
+            -webkit-animation-timing-function: linear;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-name: rotate;
+
+            animation-duration: 3s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-name: rotate;
+
+        }
+
+        @-webkit-keyframes rotate {
+            from {
+                -webkit-transform: rotate(0deg);
+
+            }
+            to {
+                -webkit-transform: rotate(360deg);
+
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<img id="foo" src="chrome-logo.png" width="250">
+
+<div id="item2">
+    <div style="width: 500px">
+        Rotation via CSS keyframe animation
+    </div>
+    <div>
+        <button id="jank3">sleep(1000ms)</button>
+    </div>
+</div>
+<script>
+    function sleep(ms) {
+        var start = Date.now();
+        while (Date.now() < start + ms);
+    }
+
+    document.querySelector('#jank3').addEventListener('click', function () {
+        setTimeout(function () {
+            sleep(1000);
+        }, 0);
+    });
+</script>
+</body>
+</html>
